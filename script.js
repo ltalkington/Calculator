@@ -4,6 +4,7 @@ let display = document.getElementById("display");
 let currentNumber = 0;
 let nextNumber = 0;
 let operator = 0;
+let decimalAlready = false;
 let buttonZero = document.getElementById("zero");
 let buttonOne = document.getElementById("one");
 let buttonTwo = document.getElementById("two");
@@ -17,9 +18,66 @@ let buttonNine = document.getElementById("nine");
 let clearButton = document.getElementById("AC");
 let divisionButton = document.getElementById("division");
 let equalsButton = document.getElementById("equals");
+let multiplyButton = document.getElementById("multiply");
+let subtractButton = document.getElementById("minus");
+let additionButton = document.getElementById("addition");
+let negativeButton = document.getElementById("negative");
+let decimalButton = document.getElementById("decimal");
+let percentButton = document.getElementById("percent");
+
+function percentButtonClick() {
+  let number = Number(display.innerText);
+  display.innerText = number / 100;
+}
+
+function decimalButtonClick() {
+  if (decimalAlready == false) {
+    let number = Number(display.innerText);
+    display.innerText = number + ".";
+    decimalAlready = true;
+  }
+}
+
+function negativeButtonClick() {
+  let number = Number(display.innerText);
+  if (number > 0) {
+    number = "-" + number;
+    console.log(number);
+    display.innerText = number;
+  } else if (number < 0) {
+    number = Math.abs(number);
+    console.log(number);
+    display.innerText = number;
+  }
+}
+
+function additionButtonClick() {
+  let number = Number(display.innerText);
+  console.log(number);
+  currentNumber = number;
+  operator = "+";
+  display.innerText = 0;
+}
+
+function multiplyButtonClick() {
+  let number = Number(display.innerText);
+  console.log(number);
+  currentNumber = number;
+  operator = "*";
+  display.innerText = 0;
+}
+
+function subtractButtonClick() {
+  let number = Number(display.innerText);
+  console.log(number);
+  currentNumber = number;
+  operator = "-";
+  display.innerText = 0;
+}
 
 function clearButtonClick() {
   display.innerText = 0;
+  decimalAlready = false;
 }
 
 function divisionButtonClick() {
@@ -37,6 +95,22 @@ function equalsButtonClick() {
   if (operator == "/") {
     let newNumber = currentNumber / nextNumber;
     console.log(newNumber);
+    Math.round(newNumber);
+    display.innerText = newNumber;
+  } else if (operator == "*") {
+    let newNumber = currentNumber * nextNumber;
+    console.log(newNumber);
+    Math.round(newNumber);
+    display.innerText = newNumber;
+  } else if (operator == "-") {
+    let newNumber = currentNumber - nextNumber;
+    console.log(newNumber);
+    Math.round(newNumber);
+    display.innerText = newNumber;
+  } else if (operator == "+") {
+    let newNumber = currentNumber + nextNumber;
+    console.log(newNumber);
+    Math.round(newNumber);
     display.innerText = newNumber;
   }
 }
@@ -117,6 +191,7 @@ function buttonNineClick() {
     display.innerText += 9;
   }
 }
+
 buttonZero.addEventListener("click", buttonZeroClick);
 buttonOne.addEventListener("click", buttonOneClick);
 buttonTwo.addEventListener("click", buttonTwoClick);
@@ -130,3 +205,9 @@ buttonNine.addEventListener("click", buttonNineClick);
 clearButton.addEventListener("click", clearButtonClick);
 divisionButton.addEventListener("click", divisionButtonClick);
 equalsButton.addEventListener("click", equalsButtonClick);
+multiplyButton.addEventListener("click", multiplyButtonClick);
+subtractButton.addEventListener("click", subtractButtonClick);
+additionButton.addEventListener("click", additionButtonClick);
+negativeButton.addEventListener("click", negativeButtonClick);
+decimalButton.addEventListener("click", decimalButtonClick);
+percentButton.addEventListener("click", percentButtonClick);
